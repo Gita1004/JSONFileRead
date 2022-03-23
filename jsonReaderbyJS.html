@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Title</title>
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+<link rel="icon" type="image/gif" href="favicon/animated_favicon1.gif">
+</head>
+<body>
+    <div id="myData"></div>
+    <script>
+        fetch('./sample.json')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                //console.logs(data);
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+        function appendData(data) {
+            var mainContainer = document.getElementById("myData");
+            
+            for (var i = 0; i < data.length; i++) {
+                var div = document.createElement("div");
+
+                div.innerHTML = 'contributor_ids:' + data[i].contributor_ids + 
+                '                                active_contributor_ids:' + data[i].active_contributor_ids +
+                '                                  page_ids_collection:' + data[i].page_ids_collection +
+                '                                   id :' + data[i].id  +
+                '                                 owner_id:' + data[i].owner_id  +          
+                '                                 name:' + data[i].name  +
+                '                                  created_time:' + data[i].created_time  +
+                '                                 updated_time: ' + data[i].updated_time  +
+                '                                 sharing_type:' + data[i].sharing_type  +
+                '                                 page_sequence:' + data[i].page_sequence  +
+                '                                 __v:' + data[i].__v  +
+                '                                type:' + data[i].type  +
+                '                                metadata:' + data[i].metadata;
+                mainContainer.appendChild(div);
+            }
+        }
+    </script>
+</script>
+</body>
+</html>
